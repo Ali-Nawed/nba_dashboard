@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+
+    <title>NBA Dashboard 2018-19</title>
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <!-- Bokeh includes-->
+    <link rel="stylesheet" href="//cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" type="text/css" />
+    <script type="text/javascript" src="//cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+</head>
+    <body>
+
+        <div id='player_info'>
+        <p>Name: {{player_info.DISPLAY_FIRST_LAST|safe}}</p>
+        <p>Height: {{player_info.HEIGHT|safe}}</p>
+        <p>Weight: {{player_info.WEIGHT|safe}}</p>
+        <p>Team: {{player_info.TEAM_NAME|safe}}</p>
+        <p>Drafted: {{player_info.DRAFT_YEAR|safe}}</p>
+        <p>Round Number: {{player_info.DRAFT_ROUND|safe}} Draft Number: {{player_info.DRAFT_NUMBER|safe}}</p>
+        </div>
+     <div id='histogramDiv'>   
+        <div id='ppgPlot'>
+            {{params.PTS_script|safe}}
+            {{params.PTS_div|safe}}
+        </div>
+        
+        <div id='apgPlot'>
+            {{params.AST_script|safe}}
+            {{params.AST_div|safe}}
+        </div>
+
+        <div id='rbgPlot'>
+            {{params.REB_script|safe}}
+            {{params.REB_div|safe}}
+        </div>
+
+        <div id='spgPlot', style='position:relative; left:400px; top:-250px' >
+            {{params.STL_script|safe}}
+            {{params.STL_div|safe}}
+        </div>
+        <div id='bpgPlot', style='position:relative; left:800px; top:-500px;'>
+            {{params.BLK_script|safe}}
+            {{params.BLK_div|safe}}
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='player_selection.js')}}"></script>
+
+</body>
