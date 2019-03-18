@@ -30,6 +30,15 @@ def make_hist(data, title):
     return plot
 
 
-def make_wedge(data, title):
+def wedge_data(data):
+
+        return data[['AST','TOV', 'FT_PCT', 'FG_PCT', 'FG3_PCT']].mean()
+
+
+def ratio_plot(data, title):
+
+        pass
+
+def pct_plot(data):
 
         pass

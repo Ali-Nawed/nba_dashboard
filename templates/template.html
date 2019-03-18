@@ -6,9 +6,20 @@
     <!-- Bokeh includes-->
     <link rel="stylesheet" href="//cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.css" type="text/css" />
     <script type="text/javascript" src="//cdn.pydata.org/bokeh/release/bokeh-1.0.4.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
     <body>
-
+        <!--Make sure the form has the autocomplete function switched off:-->
+    <form autocomplete="off" action="/action_page.php">
+        <div class="autocomplete" style="width:300px;">
+            <input id="myInput" type="text" name="playerName" placeholder="Player Name">
+        </div>
+        <input type="submit">
+    </form>
         <div id='player_info'>
         <p>Name: {{player_info.DISPLAY_FIRST_LAST|safe}}</p>
         <p>Height: {{player_info.HEIGHT|safe}}</p>
