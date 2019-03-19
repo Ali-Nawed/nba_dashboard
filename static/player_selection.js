@@ -95,5 +95,5 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
 }
-/*var players = ['Ali', 'Umer', 'Arslan'];*/
+
 autocomplete(document.getElementById("myInput"), players);
