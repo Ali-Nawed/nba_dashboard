@@ -11,13 +11,17 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def main():
 
-    player_id = 202695
+    player_id = 201939
     player_data = Player(player_id)
     hist_params = create_hist_params(player_data.stats)
-    
+    percent_data = wedge_data(player_data.stats)
+    wedge_params = create_wedge_params(percent_data)
     player_info = get_player_info(player_data.info)
 
-    return render_template('template.html', params=hist_params, player_info=player_info)
+    return render_template('template.html', 
+                           params=hist_params, 
+                           player_info=player_info,
+                           wedge_params=wedge_params)
 
 
 def create_hist_params(data):
@@ -49,6 +53,20 @@ def create_hist_params(data):
         params[div_param] = div_component
 
     return params
+
+def create_wedge_params(percent_data):
+    params = {}
+
+    for stat in percent_data.index:
+        plot = pct_plot(percent_data, stat)
+
+        script, div = components(plot)
+
+        params['{}_script'.format(stat)] = script
+        params['{}_div'.format(stat)] = div
+
+    return params
+
 
 
 def get_player_info(info):

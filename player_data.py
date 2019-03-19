@@ -71,4 +71,4 @@ class Player():
 
     def __str__(self):
 
-        return '{}, {}'.format(self.info['DISPLAY_FIRST_LAST'][0], self.id)
+        return '{}, {}'.format(self.info['DISPLAY_FIRST_LAST'], self.id)

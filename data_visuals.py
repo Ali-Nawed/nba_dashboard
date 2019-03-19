@@ -4,7 +4,7 @@ from bokeh.models.glyphs import VBar
 from bokeh.io import show
 from player_data import *
 import numpy as np
-
+import pandas as pd
 
 
 
@@ -32,13 +32,48 @@ def make_hist(data, title):
 
 def wedge_data(data):
 
-        return data[['AST','TOV', 'FT_PCT', 'FG_PCT', 'FG3_PCT']].mean()
+        return data[['FT_PCT', 'FG_PCT', 'FG3_PCT']].mean()
 
 
-def ratio_plot(data, title):
+def pct_plot(data, stat_name):
 
-        pass
+        data_stat = {
 
-def pct_plot(data):
+                stat_name: data[stat_name],
+                stat_name+'_not': 1 - data[stat_name]
+        }
 
-        pass
+        angle = [data_stat[stat_name]*2*np.pi, 2*np.pi]
+
+        colors = ['navy', 'red']
+
+        plot = figure(plot_height=250, plot_width=250,
+        title = stat_name,
+        toolbar_location=None,
+        tools='')
+
+        plot.annular_wedge(x=1, y=1, inner_radius=0.4, outer_radius=0.8,
+                           start_angle=0, end_angle=angle[0],
+                           line_color="white", fill_color=colors[0],
+                           fill_alpha=0.8)
+
+
+        plot.annular_wedge(x=1, y=1, inner_radius=0.4, outer_radius=.8,
+                           start_angle=angle[0], end_angle=angle[1],
+                           line_color="white", fill_color=colors[1],
+                           fill_alpha=0.8)
+
+        plot.text(x=1, y=1, text=['{:.2f}'.format(data_stat[stat_name])],
+                  text_font_size='30pt',
+                  x_offset=-40,
+                  y_offset=25)
+
+        plot.axis.axis_label=None
+        plot.axis.visible=False
+        plot.grid.grid_line_color = None
+        plot.outline_line_color = None
+
+        return plot
+        
+
+        
