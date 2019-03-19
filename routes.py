@@ -7,6 +7,7 @@ from bokeh.embed import components
 
 app = Flask(__name__)
 
+season = Season('2018-19')
 
 @app.route('/', methods=['GET'])
 def main():
@@ -18,10 +19,13 @@ def main():
     wedge_params = create_wedge_params(percent_data)
     player_info = get_player_info(player_data.info)
 
+    player_list = {'players':list(season.players['PLAYER_NAME'])}
+
     return render_template('template.html', 
                            params=hist_params, 
                            player_info=player_info,
-                           wedge_params=wedge_params)
+                           wedge_params=wedge_params,
+                           player_list=player_list)
 
 
 def create_hist_params(data):

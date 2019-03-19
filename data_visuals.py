@@ -61,13 +61,12 @@ def pct_plot(data, stat_name):
         tools='')
 
         plot.annular_wedge(x=1, y=1, inner_radius=0.4, outer_radius=0.8,
-                           start_angle=0, end_angle=angle[0],
+                           start_angle=np.pi/2, end_angle=angle[0] + np.pi/2,
                            line_color="white", fill_color=colors[0],
                            fill_alpha=0.8)
 
-
         plot.annular_wedge(x=1, y=1, inner_radius=0.4, outer_radius=.8,
-                           start_angle=angle[0], end_angle=angle[1],
+                           start_angle=angle[0] + np.pi/2, end_angle=angle[1] + np.pi/2,
                            line_color="white", fill_color=colors[1],
                            fill_alpha=0.8)
 
