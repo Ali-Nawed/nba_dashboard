@@ -7,7 +7,12 @@ import numpy as np
 import pandas as pd
 
 
+DATA_STAT_TITLE = {
 
+        'FT_PCT': 'Freethrow Percentage ',
+        'FG_PCT': 'Field Goal Percentage',
+        'FG3_PCT': '3-Point Percentage'
+}
 
 def make_hist(data, title):
 
@@ -27,6 +32,8 @@ def make_hist(data, title):
             line_color='white',
             fill_color='navy',
             fill_alpha=0.6)
+    plot.outline_line_color = None
+    plot.xgrid.visible = False    
     return plot
 
 
@@ -36,6 +43,7 @@ def wedge_data(data):
 
 
 def pct_plot(data, stat_name):
+
 
         data_stat = {
 
@@ -48,7 +56,7 @@ def pct_plot(data, stat_name):
         colors = ['navy', 'red']
 
         plot = figure(plot_height=250, plot_width=250,
-        title = stat_name,
+        title = DATA_STAT_TITLE[stat_name],
         toolbar_location=None,
         tools='')
 
