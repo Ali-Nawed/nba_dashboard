@@ -1,7 +1,6 @@
 from bokeh.plotting import figure
 from bokeh.models import LinearAxis, Grid
 from bokeh.models.glyphs import VBar
-from bokeh.io import show
 from player_data import *
 import numpy as np
 import pandas as pd
