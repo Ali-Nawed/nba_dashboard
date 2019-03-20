@@ -1,26 +1,41 @@
 from player_data import *
 from data_visuals import *
 import requests
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from bokeh.embed import components
 
 
 app = Flask(__name__)
 
-season = Season('2018-19')
-
 @app.route('/', methods=['GET'])
 def main():
+    season_id = request.args.get("SeasonId")
+    player_id = request.args.get("PlayerId")
+    print(request.args)
+    print(season_id)
+    print(player_id)
 
-    player_id = 201939
-    player_data = Player(player_id)
+    if not player_id or not season_id:
+        player_id = '201939'
+        season_id = '2018-19'
+
+    else:
+        print(player_id.split('\t'))
+        player_id = player_id.split('\t')[1]
+
+    print(player_id)
+
+
+    season = Season(season_id)
+    player_data = Player(int(player_id))
     hist_params = create_hist_params(player_data.stats)
     percent_data = wedge_data(player_data.stats)
     wedge_params = create_wedge_params(percent_data)
     player_info = get_player_info(player_data.info)
 
-    player_list = {'players':list(season.players['PLAYER_NAME'])}
-
+    player_name = list(season.players['PLAYER_NAME'])
+    player_id = list(season.players['PLAYER_ID'])
+    player_list = {'players':['{}\t{}'.format(player_name[i],player_id[i]) for i in range(len(player_id))]}
     return render_template('template.html', 
                            params=hist_params, 
                            player_info=player_info,

@@ -96,4 +96,9 @@ function autocomplete(inp, arr) {
     });
 }
 
+function myFunction(){
+  console.log('hi');
+}
+
 autocomplete(document.getElementById("myInput"), players);
+
